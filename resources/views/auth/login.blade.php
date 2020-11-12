@@ -8,14 +8,14 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <input type="email" id="login" value="{{ old('email') }}" class="fadeIn second @error('email') is-invalid @enderror" name="email" placeholder="{{__('text.email')}}">
+                    <input type="email" id="login" value="{{ old('email') }}" class="fadeIn second @error('email') is-invalid @enderror" name="email" placeholder="Email">
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
 
-                    <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{__('text.password')}}">
+                    <input type="password" id="password" class="fadeIn third @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

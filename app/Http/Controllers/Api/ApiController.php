@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,13 @@ class ApiController extends Controller
 
     public function store(Request $request)
     {
+        $validator= Validator::make($request->all(), [
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+        if($validator->fails()){
+            return response()->json(['msg' => $validator->errors()],500);
+        }
        $user= User::create($request->all());
         return response()->json(['data' => new UserResource($user),'msg' => 'Created Successfully'],201);
     }
