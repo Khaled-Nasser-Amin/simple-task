@@ -37,8 +37,8 @@ class ApiController extends Controller
 
     public function store(Request $request)
     {
-        User::create($request->all());
-        return response()->json(['msg' => 'Created Successfully'],201);
+       $user= User::create($request->all());
+        return response()->json(['data' => new UserResource($user),'msg' => 'Created Successfully'],201);
     }
 
     public function show($id)
