@@ -45,7 +45,9 @@ class ApiController extends Controller
         if($validator->fails()){
             return response()->json(['msg' => $validator->errors()],500);
         }
-       $user= User::create($request->all());
+        $data=$request->except('password');
+        $data['password']=bcrypt($request->input('password'));
+        $user= User::create($data);
         return response()->json(['data' => new UserResource($user),'msg' => 'Created Successfully'],201);
     }
 

@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/login','Api\ApiController@login');
 
 Route::group(['namespace' => 'Api','middleware' => 'auth:api'],function (){
     Route::apiResource('admins','ApiController');
-    Route::post('/login','ApiController@login');
 
 });
 
